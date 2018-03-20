@@ -9,6 +9,8 @@
   "author": "Yuriy Shandor",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-uglify-es": "^1.0.1"
   }
 }
