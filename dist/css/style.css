@@ -6,3 +6,5 @@
     .container .row div {
       width: 10%;
       background: #000; }
+      .container .row div h1 {
+        color: #c3c3c3; }

@@ -4,6 +4,7 @@ const imagemin = require('gulp-imagemin');
 const uglify = require('gulp-uglify-es').default;
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
+const watch = require('gulp-watch');
 
 // Logs Message
 gulp.task('message', () => {
@@ -30,7 +31,7 @@ gulp.task('imageMin', () =>
 );
 
 // Optimize js-files
-gulp.task('jsMin', () => {
+gulp.task('jsCompile', () => {
   gulp.src('src/js/*.js')
       .pipe(rename({
         suffix: '.min'
@@ -50,10 +51,12 @@ gulp.task('sassCompile', () => {
 });
 
 // Start All Comands
-gulp.task('default', ['copyHTML', 'imageMin', 'jsMin', 'sassCompile']);
+gulp.task('default', ['copyHTML', 'copyFonts', 'imageMin', 'jsCompile', 'sassCompile']);
 
 // Gulp Watching
 gulp.task('watch', () => {
   gulp.watch('src/*.html', ['copyHTML']);
-  gulp.watch('src/*.html', ['copyHTML']);
+  gulp.watch('src/fonts/*', ['copyFonts']);
+  gulp.watch('src/js/*.js', ['jsCompile']);
+  gulp.watch('src/scss/*.scss', ['sassCompile']);
 });
