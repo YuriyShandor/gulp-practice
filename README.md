@@ -26,9 +26,15 @@ npm install --save-dev gulp-uglify-es
 
 /////////////////////////////////////////////
 
+Встановити плаґін для компіляції ES6 скриптів
+
+npm install --save-dev gulp-babel babel-core babel-preset-env
 
 /////////////////////////////////////////////
 
+Встановити плаґін для компіляції SASS
+
+npm install --save-dev gulp-sass
 
 /////////////////////////////////////////////
 

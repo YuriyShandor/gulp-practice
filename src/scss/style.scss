@@ -1,0 +1,15 @@
+$bg: #000;
+
+.container {
+  width: 1170px;
+
+  .row {
+    width: 100%;
+    padding: 0 15px;
+
+    div {
+      width: 10%;
+      background: $bg;
+    }
+  }
+}

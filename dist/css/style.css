@@ -1,0 +1,8 @@
+.container {
+  width: 1170px; }
+  .container .row {
+    width: 100%;
+    padding: 0 15px; }
+    .container .row div {
+      width: 10%;
+      background: #000; }
