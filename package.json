@@ -1,0 +1,14 @@
+{
+  "name": "gulp-practice",
+  "version": "1.0.0",
+  "description": "Gulp Practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yuriy Shandor",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
