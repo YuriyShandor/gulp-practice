@@ -1,3 +1,5 @@
+'use strict';
+
 const gulp = require('gulp');
 const rename = require("gulp-rename");
 const imagemin = require('gulp-imagemin');
@@ -5,6 +7,7 @@ const uglify = require('gulp-uglify-es').default;
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const watch = require('gulp-watch');
+const browserSync = require('browser-sync').create();
 
 // Logs Message
 gulp.task('message', () => {
@@ -48,15 +51,35 @@ gulp.task('sassCompile', () => {
   gulp.src('src/scss/*.scss')
       .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('dist/css'))
+      .pipe(browserSync.stream());
 });
 
 // Start All Comands
-gulp.task('default', ['copyHTML', 'copyFonts', 'imageMin', 'jsCompile', 'sassCompile']);
+gulp.task('build', ['copyHTML', 'copyFonts', 'imageMin', 'jsCompile', 'sassCompile']);
+
 
 // Gulp Watching
 gulp.task('watch', () => {
   gulp.watch('src/*.html', ['copyHTML']);
   gulp.watch('src/fonts/*', ['copyFonts']);
+  gulp.watch('src/img/*', ['imageMin']);
+  gulp.watch('src/js/*.js', ['jsCompile']);
+  gulp.watch('src/scss/*.scss', ['sassCompile']);
+});
+
+// Static Server + watching files
+gulp.task('startServer', ['build'], function () {
+  plugins.browserSync.init({
+    server: {
+      baseDir: 'dist',
+      index: "index.html"
+    },
+    scrollProportionally: true,
+    notify: false
+  })
+  gulp.watch('src/*.html', ['copyHTML']).on('change', reload);
+  gulp.watch('src/fonts/*', ['copyFonts']);
+  gulp.watch('src/img/*', ['imageMin']);
   gulp.watch('src/js/*.js', ['jsCompile']);
   gulp.watch('src/scss/*.scss', ['sassCompile']);
 });
