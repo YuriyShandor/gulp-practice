@@ -44,6 +44,8 @@ npm install --save-dev gulp-watch
 
 /////////////////////////////////////////////
 
+Встановити плаґін для Dev-Server
+
 npm install --save-dev browser-sync
 
 /////////////////////////////////////////////

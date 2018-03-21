@@ -1,3 +1,5 @@
+'use strict';
+
 // Console Log 1
 
 console.log('Console Log 1');

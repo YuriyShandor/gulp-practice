@@ -14,72 +14,73 @@ gulp.task('message', () => {
   return console.log("Gulp is running");
 });
 
-// Copy all HTML files
-gulp.task('copyHTML', () => {
-  gulp.src('src/*.html')
-      .pipe(gulp.dest('dist'))
-});
-
-// Copy all fonts files
-gulp.task('copyFonts', () => {
-  gulp.src('src/fonts/*')
-      .pipe(gulp.dest('dist/fonts'))
-});
+// // Copy all HTML files
+// gulp.task('copyHTML', () => {
+//   gulp.src('src/*.html')
+//       .pipe(gulp.dest('dist'))
+// });
+//
+// // Copy all fonts files
+// gulp.task('copyFonts', () => {
+//   gulp.src('src/fonts/*')
+//       .pipe(gulp.dest('dist/fonts'))
+// });
 
 //Optimize images
 gulp.task('imageMin', () =>
 	gulp.src('src/img/*')
 		  .pipe(imagemin())
-		  .pipe(gulp.dest('dist/img'))
+		  .pipe(gulp.dest('img'))
 );
 
 // Optimize js-files
 gulp.task('jsCompile', () => {
   gulp.src('src/js/*.js')
-      .pipe(rename({
-        suffix: '.min'
-      }))
       .pipe(babel({
             presets: ['env']
         }))
-      .pipe(uglify())
-      .pipe(gulp.dest('dist/js'))
+      .pipe(gulp.dest('js'))
 });
+
+// .pipe(rename({
+//   suffix: '.min'
+// }))
+// .pipe(uglify())
 
 // SASS Compilation
 gulp.task('sassCompile', () => {
   gulp.src('src/scss/*.scss')
       .pipe(sass().on('error', sass.logError))
-      .pipe(gulp.dest('dist/css'))
+      .pipe(gulp.dest('css'))
       .pipe(browserSync.stream());
 });
 
 // Start All Comands
-gulp.task('build', ['copyHTML', 'copyFonts', 'imageMin', 'jsCompile', 'sassCompile']);
+gulp.task('build', ['imageMin', 'jsCompile', 'sassCompile']);
 
 
 // Gulp Watching
 gulp.task('watch', () => {
-  gulp.watch('src/*.html', ['copyHTML']);
-  gulp.watch('src/fonts/*', ['copyFonts']);
   gulp.watch('src/img/*', ['imageMin']);
   gulp.watch('src/js/*.js', ['jsCompile']);
   gulp.watch('src/scss/*.scss', ['sassCompile']);
 });
 
-// Static Server + watching files
-gulp.task('startServer', ['build'], function () {
-  plugins.browserSync.init({
+// gulp.watch('src/*.html', ['copyHTML']);
+// gulp.watch('src/fonts/*', ['copyFonts']);
+
+gulp.task('startServer', ['build'], () => {
+  browserSync.init({
     server: {
-      baseDir: 'dist',
-      index: "index.html"
+      baseDir: "./"
     },
     scrollProportionally: true,
-    notify: false
+    notify: false,
+    open: "local"
   })
-  gulp.watch('src/*.html', ['copyHTML']).on('change', reload);
-  gulp.watch('src/fonts/*', ['copyFonts']);
   gulp.watch('src/img/*', ['imageMin']);
   gulp.watch('src/js/*.js', ['jsCompile']);
   gulp.watch('src/scss/*.scss', ['sassCompile']);
+  gulp.watch('*.html').on('change', browserSync.reload);
+  gulp.watch('js/*.js', browserSync.reload);
 });
