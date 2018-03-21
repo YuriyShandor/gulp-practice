@@ -50,6 +50,9 @@ npm install --save-dev browser-sync
 
 /////////////////////////////////////////////
 
+Встановити плаґін Autoprefixer
+
+npm install --save-dev gulp-autoprefixer
 
 /////////////////////////////////////////////
 

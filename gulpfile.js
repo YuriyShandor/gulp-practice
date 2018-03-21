@@ -6,6 +6,7 @@ const imagemin = require('gulp-imagemin');
 const uglify = require('gulp-uglify-es').default;
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
 const watch = require('gulp-watch');
 const browserSync = require('browser-sync').create();
 
@@ -51,9 +52,21 @@ gulp.task('jsCompile', () => {
 gulp.task('sassCompile', () => {
   gulp.src('src/scss/*.scss')
       .pipe(sass().on('error', sass.logError))
+      .pipe(autoprefixer({
+          browsers: ['last 16 versions', '> 1%', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'],
+          cascade: false
+      }))
       .pipe(gulp.dest('css'))
       .pipe(browserSync.stream());
 });
+
+
+// .pipe(autoprefixer({
+//     browsers: ['last 16 versions'],
+//     cascade: false
+// }))
+
+// , '> 1%', 'ie 8', 'ie 7'
 
 // Start All Comands
 gulp.task('build', ['imageMin', 'jsCompile', 'sassCompile']);
@@ -69,7 +82,7 @@ gulp.task('watch', () => {
 // gulp.watch('src/*.html', ['copyHTML']);
 // gulp.watch('src/fonts/*', ['copyFonts']);
 
-gulp.task('startServer', ['build'], () => {
+gulp.task('default', ['build'], () => {
   browserSync.init({
     server: {
       baseDir: "./"

@@ -10,10 +10,21 @@
         color: #c3c3c3; }
 
 h1 {
-  color: red;
+  color: green;
   font-size: 70px;
   font-family: Tahoma;
   font-weight: 700; }
 
 p {
   color: #000; }
+
+.box {
+  width: 200px;
+  height: 150px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #ff5511; }
