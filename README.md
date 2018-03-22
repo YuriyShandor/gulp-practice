@@ -56,5 +56,8 @@ npm install --save-dev gulp-autoprefixer
 
 /////////////////////////////////////////////
 
+Встановити плаґін для оптимізації CSS
+
+npm install --save-dev gulp-cssmin
 
 /////////////////////////////////////////////

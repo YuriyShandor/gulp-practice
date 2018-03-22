@@ -1,6 +1,8 @@
 $bg: #000;
 $col: #c3c3c3;
 
+@import "./_components/_josefin-sans.scss";
+
 .container {
   width: 1170px;
 
@@ -20,9 +22,9 @@ $col: #c3c3c3;
 }
 
 h1 {
-  color: green;
-  font-size: 70px;
-  font-family: Tahoma;
+  font-family: JosefinSans;
+  color: blue;
+  font-size: 40px;
   font-weight: 700;
 }
 
