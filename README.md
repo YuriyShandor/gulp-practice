@@ -61,3 +61,9 @@ npm install --save-dev gulp-autoprefixer
 npm install --save-dev gulp-cssmin
 
 /////////////////////////////////////////////
+
+Для встановлення всіх плаґігів скопіювати devDependencies з package.json і запустити команду:
+
+npm install
+
+/////////////////////////////////////////////
